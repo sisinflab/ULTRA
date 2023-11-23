@@ -772,7 +772,22 @@ class ILPC2022(InductiveDataset):
     ]
 
     name = "ilpc2022"
-    
+
+
+class PrimeKG(InductiveDataset):
+
+    urls = []
+    delimiter = "\t"
+    versions = {
+        'full': "full",
+        'ten_percent': "ten_percent"
+    }
+    name = "PrimeKG"
+
+    def __init__(self, root, version, **kwargs):
+        version = self.versions[version]
+        super().__init__(root, version, **kwargs)
+
 
 class HM(InductiveDataset):
     # benchmarks from Hamaguchi et al and Indigo BM
