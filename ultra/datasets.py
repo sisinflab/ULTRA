@@ -780,7 +780,8 @@ class PrimeKG(InductiveDataset):
     delimiter = "\t"
     versions = {
         'full': "full",
-        'ten_percent': "ten_percent"
+        'ten_percent': "ten_percent",
+        'four_percent': "four_percent"
     }
     name = "PrimeKG"
 
