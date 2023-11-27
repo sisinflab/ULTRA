@@ -1,8 +1,8 @@
-output_dir: ~/Scaricati/ULTRA/output
+output_dir: ~/Pietro/ULTRA/output
 
 dataset:
   class: {{ dataset }}
-  root: ~/Scaricati/ULTRA/kg-datasets/
+  root: ~/Pietro/ULTRA/kg-datasets/
   version: {{ version }}
 
 model:
