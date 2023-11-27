@@ -1,9 +1,9 @@
-output_dir: ~/git/ULTRA/output
+output_dir: ~/Scaricati/ULTRA/output
 
 dataset:
-  class: PrimeKG
-  root: ~/git/ULTRA/kg-datasets/
-  version: full
+  class: {{ dataset }}
+  root: ~/Scaricati/ULTRA/kg-datasets/
+  version: {{ version }}
 
 model:
   class: Ultra
@@ -36,11 +36,11 @@ optimizer:
   lr: 5.0e-4
 
 train:
-  gpus: null
+  gpus: {{ gpus }}
   batch_size: 16
-  num_epoch: 0
+  num_epoch: {{ epochs }}
   log_interval: 100
-  batch_per_epoch: null
+  batch_per_epoch: {{ bpe }}
   #logger: wandb
 
-checkpoint: /home/pietro/PycharmProjects/ULTRA/ckpts/ultra_4g.pth
+checkpoint: {{ ckpt }}

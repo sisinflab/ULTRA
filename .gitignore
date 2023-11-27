@@ -166,3 +166,4 @@ kg-datasets/
 *.csv
 
 .idea
+/data/
