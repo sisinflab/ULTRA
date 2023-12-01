@@ -66,7 +66,7 @@ class RelNBFNet(BaseNBFNet):
         size = (data.num_nodes, data.num_nodes)
         edge_weight = torch.ones(data.num_edges, device=h_index.device)
 
-        hiddens = []
+        # hiddens = []
         edge_weights = []
         layer_input = boundary
 
@@ -76,17 +76,19 @@ class RelNBFNet(BaseNBFNet):
             if self.short_cut and hidden.shape == layer_input.shape:
                 # residual connection here
                 hidden = hidden + layer_input
-            hiddens.append(hidden)
+            # hiddens.append(hidden)
             edge_weights.append(edge_weight)
             layer_input = hidden
 
         # original query (relation type) embeddings
         node_query = query.unsqueeze(1).expand(-1, data.num_nodes, -1) # (batch_size, num_nodes, input_dim)
         if self.concat_hidden:
-            output = torch.cat(hiddens + [node_query], dim=-1)
-            output = self.mlp(output)
+            # output = torch.cat(hiddens + [node_query], dim=-1)
+            # output = self.mlp(output)
+            pass
         else:
-            output = hiddens[-1]
+            # output = hiddens[-1]
+            output = hidden
 
         return {
             "node_feature": output,
@@ -142,7 +144,7 @@ class EntityNBFNet(BaseNBFNet):
         size = (data.num_nodes, data.num_nodes)
         edge_weight = torch.ones(data.num_edges, device=h_index.device)
 
-        hiddens = []
+        # hiddens = []
         edge_weights = []
         layer_input = boundary
 
@@ -157,16 +159,18 @@ class EntityNBFNet(BaseNBFNet):
             if self.short_cut and hidden.shape == layer_input.shape:
                 # residual connection here
                 hidden = hidden + layer_input
-            hiddens.append(hidden)
+            # hiddens.append(hidden)
             edge_weights.append(edge_weight)
             layer_input = hidden
 
         # original query (relation type) embeddings
         node_query = query.unsqueeze(1).expand(-1, data.num_nodes, -1) # (batch_size, num_nodes, input_dim)
         if self.concat_hidden:
-            output = torch.cat(hiddens + [node_query], dim=-1)
+            # output = torch.cat(hiddens + [node_query], dim=-1)
+            pass
         else:
-            output = torch.cat([hiddens[-1], node_query], dim=-1)
+            # output = torch.cat([hiddens[-1], node_query], dim=-1)
+            output = torch.cat([hidden, node_query], dim=-1)
 
         return {
             "node_feature": output,
